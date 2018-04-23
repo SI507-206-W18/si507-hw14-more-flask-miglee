@@ -20,11 +20,11 @@ def postentry():
     model.add_entry(name, message)
     return redirect("/")
 
-@app.route("/delete")
-def delete():
+@app.route("/delete", methods = ["POST"])
+def delete_entry():
     id_ = request.form["id"]
     model.delete_entry(id_)    
-    return redirect("/admin")
+    return render_template("admin.html", entries=model.get_entries())
 
 if __name__=="__main__":
     model.init()

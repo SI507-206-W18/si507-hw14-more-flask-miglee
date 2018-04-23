@@ -16,7 +16,7 @@ def init():
         f.close()
         id_list = []
         for a in entries:
-            is_list.append(a['id'])
+            id_list.append(a['id'])
         max_id = 0
         for a in is_list:
             if a > max_id:
@@ -53,7 +53,7 @@ def delete_entry(id_):
     for entry in entries:
 ###==
         if entry['id'] == id_:
-                del entry['id']
+            entries.remove(entry)
 
     try:
         f = open(GUESTBOOK_ENTRIES_FILE, "w")
