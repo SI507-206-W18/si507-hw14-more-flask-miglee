@@ -32,13 +32,31 @@ def get_entries():
     global entries
     return entries
 
-def add_entry(name, text,):
+def add_entry(name, text):
     global entries, GUESTBOOK_ENTRIES_FILE,next_id
     now = datetime.now()
     time_string = now.strftime("%Y-%m-%d %H:%M:%S")
     entry = {"author": name, "text": text, "timestamp": time_string, "id": str(next_id)}
     next_id +=1
     entries.insert(0, entry) ## add to front of list
+    try:
+        f = open(GUESTBOOK_ENTRIES_FILE, "w")
+        dump_string = json.dumps(entries)
+        f.write(dump_string)
+        f.close()
+    except:
+        print("ERROR! Could not write entries to file.")
+
+def change_entry(text,id_):
+    global entries, GUESTBOOK_ENTRIES_FILE,next_id
+    now = datetime.now()
+    time_string = now.strftime("%Y-%m-%d %H:%M:%S")
+    for entry in entries:
+        if entry['id'] ==id_:
+            entry['text'] = text
+            entry['timestamp'] = time_string
+
+
     try:
         f = open(GUESTBOOK_ENTRIES_FILE, "w")
         dump_string = json.dumps(entries)

@@ -17,10 +17,17 @@
     </table>
     </div>
 
-<form action="/delete" method="POST">
-
+<form action="/delete" method="POST">	
     <input type="hidden" name="id" value="{{e['id']}}">
     <input type="submit" value="x"/>
+
 </form>
 
+<form action="/changeentry" method="POST">
+    <p>Change the message: </p>
+    <p><textarea name="message" rows=10 cols=60></textarea></p>
+    <input type="hidden" name="id" value="{{e['id']}}">
+    <p><input type="submit" value="Submit"/></p>
+</form>
 {% endfor %}
+
