@@ -24,7 +24,7 @@ def postentry():
 def delete():
     id_ = request.form["id"]
     model.delete_entry(id_)    
-    return redirect("/")
+    return redirect("/admin")
 
 if __name__=="__main__":
     model.init()
